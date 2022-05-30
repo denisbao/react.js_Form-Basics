@@ -13,6 +13,14 @@ const SimpleInput = props => {
   // handling the input with refs
   const nameInputRef = useRef()
 
+  const nameInputBlurHandler = event => {
+    setEnteredNameTouched(true)
+    if(enteredName.trim() === '') {
+      setEnteredNameIsValid(false)
+      return
+    }
+  }
+
 
   const formSubmitHandler = event => {
     event.preventDefault()
@@ -46,6 +54,7 @@ const SimpleInput = props => {
           id="name"
           value={enteredName}
           onChange={nameInputChageHandler}
+          onBlur={nameInputBlurHandler}
         />
         {nameInputIsInvalid && <p className='error-text'>Name must not be empty</p>}
       </div>
